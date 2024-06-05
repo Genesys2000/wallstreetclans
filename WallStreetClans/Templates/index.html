@@ -1,0 +1,285 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Real Estate</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Josefin+Sans:ital,wght@0,300;0,400;1,300;1,400&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'css/homePage.css' %}" />
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js"> -->
+  </head>
+  <body>
+    <header>
+      <div class="nav_bar">
+        <img src="{% static 'images/Group1000002627.png'  %}" alt="" />
+        <a href="#" style="border: 1px solid #6932eb; border-radius: 5px"
+          >Home</a
+        >
+        <a href="#">About Us</a>
+        <a href="#">Blog</a>
+      </div>
+
+      <div class="nav_btn_wrapper">
+        {% if user.is_authenticated %}
+          <a href="#" class="nav_btn">Account</a>
+        {% else %}
+          <a href="{% url 'login' %}" class="nav_btn">Sign in</a>
+          <a href="#" class="nav_btn">Register</a>
+        {% endif %}
+
+        <div class="nav_btn">
+          <button>
+            <img
+              src="https://flagcdn.com/w320/ng.png"
+              alt="Nigerian Flag"
+              width="20"
+              height="15px"
+            />
+            Language <i class="bi bi-caret-down"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ///////////// main ///////// -->
+
+    <div class="main_div">
+      <div class="main_wrapper">
+        <div class="main_background">
+          <button
+            style="
+              background-color: white;
+              color: #9747ff;
+              border: 1px solid #6932eb;
+            "
+          >
+            Sale
+          </button>
+          <button>Rent</button>
+          <button>Properties</button>
+          <input
+            class="input_main"
+            type="text"
+            placeholder="search for location"
+          />
+          <button>search</button>
+          <div class="div_icon_position">
+            <i class="bi bi-search"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="why_wallstreettclan_wrapper">
+      <div class="why_Wallstreetclan">
+        <p>Why WallStreetClan?</p>
+      </div>
+      <div class="chat_us">
+        <img src="{% static 'images/Frame49(1).png'  %}" alt="" />
+      </div>
+    </div>
+
+    <!-- /* ////////// .wallstreettclan_images /////// */ -->
+
+    <div class="wallstreettclan_images_wrapper">
+      <div class="wallstreettclan_images">
+        <img src="{% static 'images/Frame12(1).png'  %}" alt="" />
+      </div>
+      <div class="wallstreettclan_images">
+        <img src="{% static 'images/Frame11(1).png'  %}" alt="" />
+      </div>
+    </div>
+
+    <div class="cons_image_wrapper">
+      <div class="cons">
+        <img
+          class="cons_1"
+          src="{% static 'images/Property1=Frame50.png'  %}"
+          alt=""
+        />
+      </div>
+      <div class="cons_image">
+        <img src="{% static 'images/Group51.png'  %}" alt="" />
+      </div>
+    </div>
+
+    <div class="home_about_wrapper">
+      <div class="home_about">
+        <img src="{% static 'images/Group54(1).png'  %}" alt="" />
+      </div>
+      <div class="home_about2">
+        <img
+          class="home_about3"
+          src="{% static 'images/Property1=Frame50.png'  %}"
+          alt=""
+        />
+      </div>
+    </div>
+
+    <div class="cons_image_wrapper">
+      <div class="cons">
+        <img
+          class="cons_1"
+          src="{% static 'images/Property1=Frame50.png'  %}"
+          alt=""
+        />
+      </div>
+      <div class="cons_image">
+        <img src="{% static 'images/Group57(1).png'  %}" alt="" />
+      </div>
+    </div>
+
+    <div class="wallstreettclan_news">
+      <img src="{% static 'images/Frame45.png'  %}" alt="" />
+    </div>
+
+    <div class="frame_45">
+      <img src="{% static 'images/Frame46.png'  %}" alt="" />
+    </div>
+
+    <div class="line_div">
+      <img src="{% static 'images/Rectangle 11(1).png'  %}" alt="" />
+    </div>
+
+    <!-- ///// before footer /////// -->
+
+    <div class="home_before_footer">
+      <div class="before-footer_div">
+        <h3>Looking for a property?</h3>
+        <p>Main Search</p>
+        <p>Property fpr Nigeria</p>
+        <p>Long term rental in Nigeria--</p>
+        <p>Houses ans flats for rent</p>
+        <p>Shared flats</p>
+        <p>Holiday rentals</p>
+        <p>Prices report</p>
+        <p>Wallstreetclan maps</p>
+        <p>Luxury villas and apartments in Nigeria for sales</p>
+        <p>Luxury rentals in Nigeria: villas apartments</p>
+      </div>
+
+      <div class="before-footer_div">
+        <h3>Do you own a property?</h3>
+        <p>Place a free listing</p>
+        <p>Owner's area</p>
+        <p>Improve the photo of your listing</p>
+        <p>Get an energy performance certificate</p>
+        <p>Create your rental contract for free</p>
+        <p>Check if a tenant is clear</p>
+        <p>Value any property for free</p>
+        <p>Find agencies to sell your property easily</p>
+        <p>Report defaulting tenant</p>
+        <p>Guide in selling your home</p>
+      </div>
+
+      <div class="before-footer_div">
+        <h3>Are a real estate professional?</h3>
+        <p>Publish your angency's properties</p>
+        <p>Already a client? log in to your account</p>
+        <p>Real estate courses</p>
+        <p>Advertising on wallstreettclan</p>
+        <p>Prpfessional estate agent</p>
+        <p>Other recommended software</p>
+        <p>Defaulting tenants record</p>
+        <p>Technology for real estate analysis</p>
+        <p>regold: Services for Real Estate Agents</p>
+        <p>Miogest real estate CRM</p>
+      </div>
+    </div>
+
+    <div class="footer_input_btn_wrapper">
+      <div class="input_btn_wrapper">
+        <i class="bi bi-newspaper"></i>
+        <div class="i_p_wrapper">
+          <p>Join our newsletters and get offers</p>
+          <p>Sign up for our newsletter</p>
+        </div>
+        <div class="input_btn_footer">
+          <input type="text" placeholder="Enter your email" />
+          <button>Subscribe</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- //////// footer //////// -->
+
+    <div class="container_footer">
+      <img
+        class="logo"
+        src="{% static 'images/Group1000002627.png'  %}"
+        alt=""
+      />
+      <div class="row">
+        <div class="col_wrapper">
+          <div class="col">
+            <h2>About WallStreetClan</h2>
+            <p>About Us</p>
+            <p>Why we are leaders</p>
+            <p>Press room</p>
+            <p>Work with us</p>
+            <p>News</p>
+          </div>
+        </div>
+
+        <div class="col_wrapper">
+          <div class="col">
+            <h2>Help</h2>
+            <p>Frequently asked qeustion (FAQs)</p>
+            <p>settings</p>
+            <p>Privacy policy</p>
+            <p>Cookies policy</p>
+            <p>General condition</p>
+          </div>
+        </div>
+
+        <div class="col_wrapper">
+          <div class="col">
+            <h2>Contact</h2>
+            <h4>if you have any query, please contact us</h4>
+            <h4 style="color: red; font-size: 12px">
+              WallStreetClan@gmail.com
+            </h4>
+            <div class="social_icons">
+              <a href=""><i class="bi bi-facebook"></i></a>
+              <a href=""><i class="bi bi-instagram"></i></a>
+              <a href=""><i class="bi bi-twitter"></i></a>
+              <a href=""><i class="bi bi-envelope"></i></a>
+              <a href=""><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col_wrapper">
+          <div class="col">
+            <h2>Download</h2>
+            <div class="footer_img">
+              <img src="{% static 'images/google_play_icon.png'  %}" alt="" />
+              <img
+                src="{% static 'images/apple_app_store_icon.png'  %}"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="footer_copyright">
+        <i class="bi bi-check-circle"></i>
+        <a href="">Copyright.2024.All Right Reserved</a>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,477 @@
+body{
+    margin: 0;
+    font-family: "DM Sans";
+    padding: 0;
+}
+
+
+header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px 20px;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #e7e7e7;
+    position: fixed;
+    width: 97vw;
+    
+}
+
+.nav_bar {
+    display: flex;
+    align-items: center;
+}
+
+.nav_bar img {
+    height: 40px;
+    margin-right: 20px;
+}
+
+.nav_bar a {
+    margin: 0 25px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    border: 1px solid white;
+    padding: 10px 20px 10px 20px;
+}
+
+.nav_btn_wrapper {
+    display: flex;
+    align-items: center;
+}
+
+a.nav_btn{
+    text-decoration: none;
+    color:initial;
+}
+
+.nav_btn{
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-left: 10px;
+
+}
+
+.nav_btn:hover {
+    background-color: #9747FF;
+    color: white;
+}
+
+.nav_btn i {
+    margin: 0 5px;
+   
+}
+
+/* /////// main ////////// */
+
+
+
+.main_div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh; 
+    background-color: #f0f0f0; 
+}
+
+.main_wrapper {
+    width: 75%;
+    max-width: 1200px;
+}
+
+.main_background {
+    background-color: aqua; 
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.main_background button {
+    padding: 10px 30px;
+    margin: 10px;
+    border: none;
+    background-color: #6932EB;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+
+.main_background button:hover {
+    background-color: #9747FF;
+}
+
+.input_main{
+    padding: 10px 80px;
+    margin-left: 10px;
+    border: none;
+    color: black;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    position: relative;
+    font-weight: bold;
+
+}
+.main_background{
+    position: relative;
+}
+.div_icon_position i{
+    position:absolute;
+    bottom: 39;
+    z-index: 10;
+    
+}
+.why_wallstreettclan_wrapper{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 100px;
+    /* gap: 30px; */
+
+}
+.why_Wallstreetclan{
+    background-color: #6932EB;
+    width: 40%;
+    height: 50px;
+    align-items: center;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+    transform: all 3s ease-in;
+}
+.why_Wallstreetclan:hover{
+    background-color: #9747FF;
+}
+.chat_us{
+    margin: 20px;
+    padding-left: 90px;
+}
+
+/* ////////// .wallstreettclan_images /////// */
+
+.wallstreettclan_images_wrapper {
+    background-color: #f0f0f0; 
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 23px; 
+}
+
+.wallstreettclan_images {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    cursor: pointer;
+}
+
+.wallstreettclan_images img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+.wallstreettclan_images:hover{
+    border: 1px solid  #9747FF;
+}
+
+/* //////// cons images ////// */
+
+.cons_image_wrapper {
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-left: 120px;
+}
+
+.cons_image {
+    padding: 100px;
+    border-radius: 8px;
+    display: flex;
+    margin-left: 130px;
+}
+
+.cons_image img {
+    width:90%;
+    border-radius: 8px;
+    margin: auto;
+   
+}
+.cons_image img:hover{
+    border: 2px solid blue;
+}
+.cons_1{
+    width: 350px;
+    position: absolute;
+    z-index: 10px;
+    top: 80;
+    height: 220px;
+
+}
+.cons_1:hover{
+    border: 2px solid #9747FF;
+}
+
+
+/* //////home about /////// */
+.home_about_wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding-bottom: 40px;
+    margin-right: 170px;
+
+}
+.home_about img{
+    width:80%;
+    border-radius: 8px;
+    margin: auto;
+}
+
+.home_about3{
+  width: 350px;
+  position:absolute;
+  top: -40;
+  right: 10;
+  height: 220px;
+
+}
+.home_about3:hover{
+    border: 2px solid #9747FF;
+}
+.home_about img:hover{
+    border: 2px solid blue;
+}
+
+/* ////////// .wallstreettclan_new ///////// */
+.wallstreettclan_news{
+    text-align: center;
+    cursor: pointer;
+    padding-bottom: 70px;
+}
+.wallstreettclan_news img{
+    width: 75%;
+}
+
+.frame_45{
+    text-align: center;
+    cursor: pointer;
+    padding-bottom: 70px;
+}
+.frame_45 img{
+    width: 75%;
+}
+
+.line_div{
+    text-align: center;
+    cursor: pointer;
+    padding-bottom: 70px;
+}
+.line_div img{
+    width: 85%;
+    /* margin: 0 20px 0 20px; */
+}
+
+/* ///// before_footer ////////    */
+
+.home_before_footer {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10px 0;
+    margin-bottom: 20px;
+   
+}
+
+.before-footer_div h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    /* color: #000; */
+    color: #323233;
+    
+}
+.before-footer_div{
+    width: 22%;
+}
+.before-footer_div p {
+    font-size: 13px;
+    color: #666;
+    margin: 25px 0;
+    font-weight: bold;
+    
+}
+.before-footer_div p:hover {
+    color: #333;
+    cursor: pointer;
+}
+   
+/* ///////// footer ////////// */
+
+.footer_input_btn_wrapper{
+    width: 100%;
+    height: 128px;
+    display: block;
+    position: relative;
+  }
+  
+.footer_input_btn_wrapper::after {
+    content: "";
+    background: url(./images/anna_paquin_in_true_blood-1600x1200.jpg);
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;   
+  }
+
+
+.input_btn_wrapper{
+    color: white;
+    display: flex;
+    padding: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+.input_btn_wrapper i{
+    font-size: 25px;
+    color:  #9747FF;
+    cursor: pointer;
+}
+.i_p_wrapper p{
+    color: white;
+    font-size: 13px;
+    margin: 4px;
+    font-weight: bold;
+}
+.input_btn_footer input{
+    width: 190px;
+    padding: 19px;
+    background-color: white;
+    border-radius: 10px;
+
+}
+
+.input_btn_footer button{
+    width: 130px;
+    padding: 19px;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+   background-color : #9747FF;
+   border: none;
+   border-radius: 10px;
+   transition: all 1s ease-out;
+
+}
+.input_btn_footer button:hover{
+    background-color: white;
+    color: #9747FF;
+    border: 1px solid #9747FF;
+}
+
+
+/* //////// .footer_copyright ///// */
+.container_footer{
+    margin: 0 auto;
+    background-color: rgba(45, 0, 45, 0.918);
+    width: 100%;
+    height: 540px;
+   
+    
+}
+
+.row{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+     margin: 35px;
+
+
+}
+.logo{
+   margin: 30px;
+   padding-left: 60px;
+   cursor: pointer;
+}
+.col h2{
+     margin-bottom: 40px;
+     font-size: 18px;
+     font-weight: bold;
+     color: white;
+     cursor: pointer;
+}
+.col p{
+    margin: 25px 0;
+    color: #FFFFFF;
+    font-size: 13px;
+    cursor: pointer;
+}
+.col h4{
+    font-size: 12px;
+    color: #FFFFFF;
+    margin: 5px 0;
+}
+.social_icons{
+    margin-top: 30px;
+}
+
+.social_icons a{
+    margin-right:  10px;
+    transition: color 0.3s;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    transition: transform 0.5s;
+    display: inline-block;
+
+}
+.social_icons a:hover{
+    color: #9747FF;
+    transform: translateY(-5px);
+}
+.footer_img{
+    display: flex;
+    flex-direction: column;
+}
+.footer_img img{
+    margin: 10px 0;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.footer_img img:hover{
+    border: 1px solid white;
+}
+
+.footer_copyright{
+    padding: 20px;
+    text-align: center;
+    color: white;
+
+}
+.footer_copyright a{
+    color: white;
+    font-size: 12px;
+    text-decoration: none;
+    
+}
+.footer_copyright i{
+    padding: 20px;
+}

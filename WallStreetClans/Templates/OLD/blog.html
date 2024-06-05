@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+</head>
+<body>
+    <h2>Blog</h2>
+    {% for post in blog_posts %}
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.content }}</p>
+        <small>Posted on {{ post.created_at }}</small>
+        <hr>
+    {% endfor %}
+</body>
+</html>

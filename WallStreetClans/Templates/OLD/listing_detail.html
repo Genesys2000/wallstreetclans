@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ property.title }}</title>
+</head>
+<body>
+    <h2>{{ property.title }}</h2>
+    <p>{{ property.description }}</p>
+    <p>Location: {{ property.location }}</p>
+    <p>Price: {{ property.price }}</p>
+    <h3>Offers</h3>
+    <ul>
+        {% for offer in property.offers.all %}
+            <li>Offer by {{ offer.buyer.username }}: {{ offer.offer_price }} ({{ offer.status }})</li>
+        {% endfor %}
+    </ul>
+    <h3>Make an Offer</h3>
+    <form method="post" action="{% url 'make_offer' property.pk %}">
+        {% csrf_token %}
+        <label for="offer_price">Offer Price:</label>
+        <input type="number" name="offer_price" id="offer_price" required>
+        <button type="submit">Submit Offer</button>
+    </form>
+</body>
+</html>
