@@ -38,8 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'WallStreetClans',
     'rest_framework',
+    'WallStreetClans',
 
 ]
 
@@ -114,7 +114,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-AUTH_USER_MODEL = "WallStreetClans.WallStreetUser"
+# AUTH_USER_MODEL = "WallStreetClans.WallStreetUser"
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.mail import send_mail
 from django.utils.crypto import get_random_string
 from .models import OTP, BlogPost, Listing, Offer, Ad
-from .forms import CustomUserCreationForm, LoginForm, OTPForm
+from .forms import *
 from rest_framework import generics, permissions
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.response import Response
@@ -193,77 +193,77 @@ class AdViewSet(viewsets.ModelViewSet):
     search_fields = ['title', 'description', 'address', 'amenities',]
     ordering_fields = ['price', 'posted_at']
 
-# @login_required
-# def initiate_payment(request):
-#     if request.method == 'POST':
-#         form = PaymentForm(request.POST)
-#         if form.is_valid():
-#             email = form.cleaned_data['email']
-#             amount = form.cleaned_data['amount']
-#             property_id = form.cleaned_data['Listing_id']
-#             property = Listing.objects.get(id='Listing _id')
+@login_required
+def initiate_payment(request):
+    if request.method == 'POST':
+        form = PaymentForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            amount = form.cleaned_data['amount']
+            property_id = form.cleaned_data['Listing_id']
+            property = Listing.objects.get(id='Listing _id')
 
-#             headers = {
-#                 "Authorization": f"Bearer {settings.PAYSTACK_SECRET_KEY}",
-#                 "Content-Type": "application/json"
-#             }
-#             data = {
-#                 "email": email,
-#                 "amount": int(amount * 100),  # Paystack expects amount in kobo
-#                 "metadata": {
-#                     "property_id": property_id,
-#                     "user_id": request.user.id
-#                 }
-#             }
+            headers = {
+                "Authorization": f"Bearer {settings.PAYSTACK_SECRET_KEY}",
+                "Content-Type": "application/json"
+            }
+            data = {
+                "email": email,
+                "amount": int(amount * 100),  # Paystack expects amount in kobo
+                "metadata": {
+                    "property_id": property_id,
+                    "user_id": request.user.id
+                }
+            }
 
-#             response = requests.post("https://api.paystack.co/transaction/initialize", headers=headers, json=data)
-#             if response.status_code == 200:
-#                 response_data = response.json()
-#                 return redirect(response_data['data']['authorization_url'])
-#             else:
-#                 form.add_error(None, "Error initializing payment. Please try again.")
-#     else:
-#         form = PaymentForm(initial={'amount': 0, 'property_id': 0})
+            response = requests.post("https://api.paystack.co/transaction/initialize", headers=headers, json=data)
+            if response.status_code == 200:
+                response_data = response.json()
+                return redirect(response_data['data']['authorization_url'])
+            else:
+                form.add_error(None, "Error initializing payment. Please try again.")
+    else:
+        form = PaymentForm(initial={'amount': 0, 'property_id': 0})
 
-#     return render(request, 'payment/initiate_payment.html', {'form': form, 'paystack_public_key': settings.PAYSTACK_PUBLIC_KEY})
+    return render(request, 'payment/initiate_payment.html', {'form': form, 'paystack_public_key': settings.PAYSTACK_PUBLIC_KEY})
 
-# @csrf_exempt
-# def payment_callback(request):
-#     if request.method == 'POST':
-#         payment_reference = request.POST.get('reference')
-#         headers = {
-#             "Authorization": f"Bearer {settings.PAYSTACK_SECRET_KEY}",
-#         }
-#         response = requests.get(f"https://api.paystack.co/transaction/verify/{payment_reference}", headers=headers)
-#         if response.status_code == 200:
-#             response_data = response.json()
-#             if response_data['data']['status'] == 'success':
-#                 property_id = response_data['data']['metadata']['property_id']
-#                 user_id = response_data['data']['metadata']['user_id']
-#                 amount = response_data['data']['amount'] / 100
+@csrf_exempt
+def payment_callback(request):
+    if request.method == 'POST':
+        payment_reference = request.POST.get('reference')
+        headers = {
+            "Authorization": f"Bearer {settings.PAYSTACK_SECRET_KEY}",
+        }
+        response = requests.get(f"https://api.paystack.co/transaction/verify/{payment_reference}", headers=headers)
+        if response.status_code == 200:
+            response_data = response.json()
+            if response_data['data']['status'] == 'success':
+                property_id = response_data['data']['metadata']['property_id']
+                user_id = response_data['data']['metadata']['user_id']
+                amount = response_data['data']['amount'] / 100
 
-#                 Payment.objects.create(
-#                     user_id=user_id,
-#                     property_id=property_id,
-#                     amount=amount,
-#                     reference=payment_reference,
-#                     status='success'
-#                 )
-#                 return redirect('payment_success')
-#             else:
-#                 Payment.objects.create(
-#                     user=request.user,
-#                     amount=amount,
-#                     reference=payment_reference,
-#                     status='failed'
-#                 )
-#                 return redirect('payment_failed')
-#     return redirect('home')
+                Payment.objects.create(
+                    user_id=user_id,
+                    property_id=property_id,
+                    amount=amount,
+                    reference=payment_reference,
+                    status='success'
+                )
+                return redirect('payment_success')
+            else:
+                Payment.objects.create(
+                    user=request.user,
+                    amount=amount,
+                    reference=payment_reference,
+                    status='failed'
+                )
+                return redirect('payment_failed')
+    return redirect('home')
 
-# @login_required
-# def payment_success(request):
-#     return render(request, 'payment/payment_success.html')
+@login_required
+def payment_success(request):
+    return render(request, 'payment/payment_success.html')
 
-# @login_required
-# def payment_failed(request):
-#     return render(request, 'payment/payment_failed.html')
+@login_required
+def payment_failed(request):
+    return render(request, 'payment/payment_failed.html')

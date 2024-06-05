@@ -43,7 +43,7 @@ class OTPForm(forms.Form):
     email = forms.EmailField(label='Email', required=True)
     otp = forms.CharField(label='OTP', max_length=6, required=True)
 
-# class PaymentForm(forms.Form):
-#     email = forms.EmailField()
-#     amount = forms.DecimalField(max_digits=10, decimal_places=2)
-#     property_id = forms.IntegerField(widget=forms.HiddenInput())
+class PaymentForm(forms.Form):
+    email = forms.EmailField()
+    amount = forms.DecimalField(max_digits=10, decimal_places=2)
+    property_id = forms.IntegerField(widget=forms.HiddenInput())
