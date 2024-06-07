@@ -1,0 +1,10 @@
+ul.messages li{
+    list-style: none;
+}
+
+ul.messages li.success{
+    color:green;
+}
+ul.messages li.error{
+    color:red;
+}

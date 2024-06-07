@@ -122,7 +122,7 @@ form{
     width: 80%;
     margin-right: 90px;
 }
-input, label{
+input:not(#id_terms_accepted), label:not(#id_terms_accepted),select {
     display: block;
     margin: 0 auto;
     width: 100%;
@@ -137,18 +137,16 @@ input[type=submit]{
     background: #6932EB ;
     border: none;
 }
-input{
-    padding: 15px 0;
+input, select{
+    padding: 15px 10px;
     border-radius: 10px;
-    
 }
 .div_input_wrapper{
-    padding: 24px ;
+    /* padding: 24px ; */
 } 
 .password{
-    padding: 24px;
+    /* padding: 24px; */
     position: relative;
-
 
 }
 .show_div{
@@ -156,9 +154,14 @@ input{
 }
 .show{
     position: absolute;
-    top: 85px;
+    top: 55px;
      right: 28px;
-     border-bottom: 1px solid black;
+    cursor: pointer;
+}
+.show button{
+    border:0;
+    background-color: transparent;
+    cursor: pointer;
 }
 
 .checkbox_div {
@@ -207,7 +210,7 @@ input{
 /* //////// register ///// */
 
 .input_icon_wrapper{
-    padding-left: 30px;
+    /* padding-left: 30px; */
 }
 .input_icons{
     margin: 15px;
@@ -271,17 +274,6 @@ input{
     margin: 10px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.error{
+    color:red;
+}

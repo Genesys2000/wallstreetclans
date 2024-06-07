@@ -121,10 +121,10 @@ form{
 
 }
 .show_div{
-    /* width: 80%; */
+    width: 80%;
     margin-right: 90px;
 }
-input, label{
+input, label, select{
     display: block;
     margin: 0 auto;
     width: 100%;
@@ -139,8 +139,8 @@ input[type=submit]{
     background: #6932EB ;
     border: none;
 }
-input{
-    padding: 15px;
+input, select{
+    padding: 15px 0;
     border-radius: 10px;
     
 }
@@ -216,22 +216,6 @@ input{
 .checkbox_div span a:hover {
     text-decoration: underline;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .form_container input[type="submit"]:hover {
     /* background: #0056b3; */
 }

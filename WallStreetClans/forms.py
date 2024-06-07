@@ -24,7 +24,7 @@ class LoginForm(forms.Form):
     email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput)
     role = forms.ChoiceField(choices=ROLE_CHOICES)
-    fingerprint_auth = forms.BooleanField(required=False, label="Use fingerprint authentication")
+    # fingerprint_auth = forms.BooleanField(required=False, label="Use fingerprint authentication")
 
     def clean(self):
         cleaned_data = super().clean()

@@ -18,6 +18,8 @@ from django.conf import settings
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib import messages
+from django.urls import reverse
 # from .forms import PaymentForm
 from .models import Listing #, Payment
 User = get_user_model()
@@ -47,8 +49,11 @@ def register(request):
             user = form.save(commit=False)
             user.terms_accepted = 'terms_accepted' in request.POST
             user.save()
-            send_otp(user)
-            return redirect('otp_verification')
+            # send_otp(user)
+            # return redirect('otp_verification')
+            messages.success(request, "Your registration is successful proceed to login")
+            return redirect(reverse('login'))
+        
     else:
         form = CustomUserCreationForm()
     return render(request, 'register.html', {'form': form})
@@ -83,12 +88,20 @@ def user_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
-            email = form.cleaned_data['email']
-            password = form.cleaned_data['password']
-            user = User.objects.filter(email=email).first()
-            if user and user.check_password(password):
-                send_otp(user)
-                return redirect('otp_verification')
+            email = form.cleaned_data.get('email')
+            password = form.cleaned_data.get('password')
+            role = form.cleaned_data.get('role')
+            user = User.objects.get(email=email)
+            if user.check_password(password) and user.role == role:
+                # send_otp(user)
+                # return redirect('otp_verification')
+                login(request,user)
+                messages.info(request, "Welcome Back {{ user.username }}")
+                return redirect('home')
+            else:
+                messages.error(request, "invalid email or password")
+        else:
+            messages.error(request, "invalid email or password")
     else:
         form = LoginForm()
     return render(request, 'login.html', {'form': form})
@@ -193,15 +206,15 @@ class AdViewSet(viewsets.ModelViewSet):
     search_fields = ['title', 'description', 'address', 'amenities',]
     ordering_fields = ['price', 'posted_at']
 
-@login_required
+# @login_required
 def initiate_payment(request):
     if request.method == 'POST':
         form = PaymentForm(request.POST)
         if form.is_valid():
             email = form.cleaned_data['email']
             amount = form.cleaned_data['amount']
-            property_id = form.cleaned_data['Listing_id']
-            property = Listing.objects.get(id='Listing _id')
+            listing_id = form.cleaned_data['Listing_id']
+            listing = Listing.objects.get(id='Listing _id')
 
             headers = {
                 "Authorization": f"Bearer {settings.PAYSTACK_SECRET_KEY}",
@@ -211,7 +224,7 @@ def initiate_payment(request):
                 "email": email,
                 "amount": int(amount * 100),  # Paystack expects amount in kobo
                 "metadata": {
-                    "property_id": property_id,
+                    "property_id": listing_id,
                     "user_id": request.user.id
                 }
             }

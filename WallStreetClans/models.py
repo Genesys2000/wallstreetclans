@@ -42,8 +42,9 @@ class WallStreetUserManger(BaseUserManager):
     
 
 class WallStreetUser(AbstractBaseUser):
+    email = models.CharField(max_length=255, unique=True)
     username = models.CharField(max_length=30, unique=True)
-    role = models.CharField(max_length=20, choices=ROLE_CHOICES, default=ROLE_CHOICES[0])
+    role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='buyer')
     terms_accepted = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
