@@ -1,7 +1,7 @@
 # forms.py
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import OTP, ROLE_CHOICES
+from .models import OTP, WallStreetUser,  ROLE_CHOICES
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
@@ -14,6 +14,16 @@ class CustomUserCreationForm(UserCreationForm):
         model = User
         fields = ['username', 'email', 'password1', 'password2', 'role', 'terms_accepted']
 
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.email =self.cleaned_data['email']
+        user.username =self.cleaned_data['username']
+        user.role =self.cleaned_data['role ']
+        user.terms_accepted =self.cleaned_data['terms_accepted']
+        if commit:
+            user.save()
+        return user
+        
     def clean_terms_accepted(self):
         terms_accepted = self.cleaned_data.get('terms_accepted')
         if not terms_accepted:

@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.core.mail import send_mail
 from django.utils.crypto import get_random_string
-from .models import OTP, BlogPost, Listing, Offer, Ad
+from .models import OTP, BlogPost, Listing, Offer, Ad, WallStreetUser
 from .forms import *
 from rest_framework import generics, permissions
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -21,7 +21,6 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 from django.urls import reverse
 # from .forms import PaymentForm
-from .models import Listing #, Payment
 User = get_user_model()
 
 def home(request):
@@ -46,11 +45,7 @@ def register(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save(commit=False)
-            user.terms_accepted = 'terms_accepted' in request.POST
-            user.save()
-            # send_otp(user)
-            # return redirect('otp_verification')
+            user = form.save()
             messages.success(request, "Your registration is successful proceed to login")
             return redirect(reverse('login'))
         
@@ -91,7 +86,7 @@ def user_login(request):
             email = form.cleaned_data.get('email')
             password = form.cleaned_data.get('password')
             role = form.cleaned_data.get('role')
-            user = User.objects.get(email=email)
+            user = WallStreetUser.objects.get(email=email)
             if user.check_password(password) and user.role == role:
                 # send_otp(user)
                 # return redirect('otp_verification')
