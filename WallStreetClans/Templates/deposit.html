@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+    {% block css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/deposit.css' %}">
+    {% endblock %}
+    {% block title %} | Make Payment {% endblock %}
+
+{% block content %}
+<div class="container_wrapper">
+    <div class="payment-container">
+        <div class="make_deposit">
+            <h2>Make Deposit</h2>
+        </div>
+        <h2 class="payment-title">Payment details <i class="bi bi-lock"></i></h2>
+        <form class="payment-form" method="post">
+        {% csrf_token %}
+        {{ form.as_p}}
+        <button type="submit">Submit</button>
+        </form>
+        <div class="payment-methods">
+            <p>We accept the following cards</p>
+            <img src="{% static 'images/visa.png' %}" alt="Visa">
+            <img class="payment-methods_img" src="{% static 'images/mastercard.png' %}" alt="MasterCard">
+            <img src="{% static 'images/Paypal_2014_logo.png' %}" alt="PayPal">
+        </div>
+    </div>
+</div>
+{% endblock %}

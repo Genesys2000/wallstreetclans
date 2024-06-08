@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+    {% block css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/listing.css' %}">
+    {% endblock %}
+    {% block title %} | Account {% endblock %}
+
+    {% block content %}
+
+<div class="listing_about_container">
+    <div class="listing_about_content">
+        {% for listing in listings %}
+            <li><a href="{% url 'listing_detail' listing.pk %}">{{ listing.title }}</a></li>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

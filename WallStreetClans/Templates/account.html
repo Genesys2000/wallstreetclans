@@ -1,12 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account</title>
-</head>
-<body>
-    <h2>Your Account</h2>
-    <p>Details about the user's account should be displayed here.</p>
-</body>
-</html>
+{% extends 'layout.html' %}
+{% load static %}
+
+    {% block css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/account.css' %}">
+    {% endblock %}
+    {% block title %} | Account {% endblock %}
+
+    {% block content %}
+ <!-- ////////// account ////////// -->
+
+ <div class="account_welcome">
+    <h1>Welcome back,</h1>
+    <img src="{% static 'images/Group 1000002670.png' %}" alt="">
+ </div>
+    
+
+ <div class="account_wrapper">
+    <div class="account_img">
+        <img src="{% static 'images/Frame 72 (1).png' %}" alt="">
+        <div class="account_btn">
+            <h1>My situation</h1>
+            <p>What's your current proprty goal?</p>
+            <p>i want to...</p>
+            <ul class="account_li_a">
+               <li><a href="">Buy a property</a></li> 
+              <li><a href="">Rent a property</a></li>  
+              <li><a href="">Sell a property</a></li> 
+              <div class="account_next">
+                <button class="account_next_btn">Next</button>
+             </div>
+            </ul>
+        </div>
+    </div>
+ </div>
+
+ <div class="property_div">
+    <img src="{% static 'images/Frame 73.png' %}" alt="">
+ </div>
+
+{% endblock %}

@@ -9,7 +9,7 @@
     justify-content: center;
     padding: 100px;
     margin: auto;
-    align-items: center;     
+    align-items: center;
 }
 
 .signIn_content{
@@ -21,7 +21,7 @@
     align-items: left;
     text-align: center;
     padding-right: 50px;
-    
+
 }
 .para_content{
     text-align: left;
@@ -40,7 +40,7 @@
     font-weight: 500;
     font-size: 30px;
     font-family: "DM Sans";
-  
+
 }
 .p{
     padding: 2px 0;
@@ -66,15 +66,15 @@
     border-radius: 10px;
     cursor: pointer;
     transition: all 1s ease;
-    
+
 
 }
 .signIn_icons i{
     gap: 10px;
-  
+
 }
 .signIn_icons:hover{
-    background-color:  #6932EB; 
+    background-color:  #6932EB;
     color: white;
 
 }
@@ -88,13 +88,13 @@
     text-align: center;
     margin-left:160px ;
     gap: 15px;
-    
+
 }
 .span_line{
   width: 100px;
   height: 1px;
   background-color: black;
- 
+
 
 }
 .paragrah p{
@@ -108,9 +108,6 @@
     text-align: center;
     width: 100%;
 }
-.form_container{
-    margin-left: 100px;
-}
 
 form{
     max-width: 500px;
@@ -122,7 +119,9 @@ form{
     width: 80%;
     margin-right: 90px;
 }
-input:not(#id_terms_accepted), label:not(#id_terms_accepted),select {
+input:not(#id_terms_accepted),
+label:not(#id_terms_accepted):not(label[for="id_terms_accepted"]),
+select {
     display: block;
     margin: 0 auto;
     width: 100%;
@@ -143,7 +142,7 @@ input, select{
 }
 .div_input_wrapper{
     /* padding: 24px ; */
-} 
+}
 .password{
     /* padding: 24px; */
     position: relative;
@@ -185,7 +184,7 @@ input, select{
     text-align: center;
     font-size: 16px;
     font-weight: 200;
-    margin-bottom: 50px;  
+    margin-bottom: 50px;
 }
 
 .p_tag a{
@@ -195,7 +194,7 @@ input, select{
     text-align: center;
     font-size: 16px;
     font-weight: 200;
-    margin-bottom: 80px; 
+    margin-bottom: 80px;
     padding: 40px;
 }
 .sign_in_footer{
@@ -205,7 +204,7 @@ input, select{
     align-items: center;
     text-align: center;
     height: 120px;
-    
+
 }
 /* //////// register ///// */
 
@@ -214,12 +213,12 @@ input, select{
 }
 .input_icons{
     margin: 15px;
-    
+
 }
 .icons_p{
     font-size: 18px;
     font-weight: 300;
-    
+
 }
 .icons_p i{
     margin-right: 20px;

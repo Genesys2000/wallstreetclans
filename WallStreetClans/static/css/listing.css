@@ -190,7 +190,7 @@ header {
   
 .footer_input_btn_wrapper::after {
     content: "";
-    background: url(./images/anna_paquin_in_true_blood-1600x1200.jpg);
+    background: url('../images/anna_paquin_in_true_blood-1600x1200.jpg');
     opacity: 0.5;
     top: 0;
     left: 0;

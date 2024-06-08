@@ -42,4 +42,4 @@ class OTPForm(forms.Form):
 class PaymentForm(forms.Form):
     email = forms.EmailField(required=True)
     amount = forms.DecimalField(max_digits=10, decimal_places=2, required=True)
-    property_id = forms.IntegerField(widget=forms.HiddenInput(), required=True)  # Ensure proper field requirement
+    listing_id = forms.IntegerField(widget=forms.HiddenInput(), required=True)  # Ensure proper field requirement

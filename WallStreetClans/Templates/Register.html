@@ -14,10 +14,43 @@
         <link
             href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Josefin+Sans:ital,wght@0,300;0,400;1,300;1,400&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
             rel="stylesheet">
-        <link rel="stylesheet" href="{% static 'css/Register.css' %}">
+            <link rel="stylesheet" href="{% static 'css/homePage.css' %}">
+            <link rel="stylesheet" href="{% static 'css/Register.css' %}">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     </head>
     <body>
+        <header>
+            <div class="nav_bar">
+              <img src="{% static 'images/Group1000002627.png'  %}" alt="" />
+              <a href="#" style="border: 1px solid #6932eb; border-radius: 5px"
+                >Home</a
+              >
+              <a href="#">About Us</a>
+              <a href="#">Blog</a>
+            </div>
+
+            <div class="nav_btn_wrapper">
+              {% if user.is_authenticated %}
+                <a href="#" class="nav_btn">Account</a>
+              {% else %}
+                <a href="{% url 'login' %}" class="nav_btn">Sign in</a>
+                <a href="{% url 'register' %}" class="nav_btn">Register</a>
+              {% endif %}
+
+              <div class="nav_btn">
+                <button>
+                  <img
+                    src="https://flagcdn.com/w320/ng.png"
+                    alt="Nigerian Flag"
+                    width="20"
+                    height="15px"
+                  />
+                  Language <i class="bi bi-caret-down"></i>
+                </button>
+              </div>
+            </div>
+          </header>
+
         <div class="page_container">
             <div class="signIn_content">
                 <div class="para_content">
@@ -35,22 +68,7 @@
                     </ul>
                     {% endif %}
                     <p class="content_p">Already Register? <span
-                            style="border-bottom: 1.5px solid black; margin: 2px;"><a href="{% url 'login' %}">Sign in</a></span></p>
-                </div>
-                <div class="signIn_icons_wrapper">
-                    <div class="signIn_icons">
-                        <i class="bi bi-google"><span
-                                style=" font-size: 20px;  margin-left: 10px;">Google</span></i>
-                    </div>
-                    <div class="signIn_icons">
-                        <i class="bi bi-facebook"><span
-                                style=" font-size: 20px;  margin-left: 10px;">Facebook</span></i>
-                    </div>
-                </div>
-                <div class="paragrah">
-                    <div class="span_line"></div>
-                    <p>or continue with your email</p>
-                    <div class="span_line"></div>
+                      style="border-bottom: 1.5px solid black; margin: 2px;"><a href="{% url 'login' %}">Sign in</a></span></p>
                 </div>
             </div>
 
@@ -60,7 +78,7 @@
                 <form method="post">
                     {% csrf_token %}
                     {{ form.as_p }}
-                    
+
                     <div class="div_input_wrapper">
                         <input type="submit" value="Register">
                     </div>
