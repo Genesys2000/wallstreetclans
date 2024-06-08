@@ -1,0 +1,286 @@
+*{
+    margin: 0;
+    font-family: "DM Sans";
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+header{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px 20px;
+    background-color: #fff ;
+    border-bottom: 5px solid #e7e7e7;
+    width: 100%;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    
+    
+    
+}
+
+.nav_bar_about {
+    display: flex;
+    align-items: center;
+}
+
+.nav_bar_about img {
+    height: 40px;
+    margin-right: 20px;
+}
+
+.nav_bar_about a {
+    margin: 0 25px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    border: 1px solid white;
+    padding: 10px 20px 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #fff ;
+}
+
+.nav_btn_wrapper_about {
+    display: flex;
+    align-items: center;
+}
+
+.nav_btn_about {
+    margin-left: 10px;
+}
+
+.nav_btn_about button {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.nav_btn_about button:hover {
+    background-color: #A4F5FB;
+    color: white;
+}
+
+.nav_btn_about button i {
+    margin: 0 5px;
+   
+}
+
+/* ///////// about us ///////// */
+
+.about_wrapper{
+    padding: 15px;
+    text-align: center;
+    width:100%;
+    background-color: #A4F5FB;
+    height: 128px;
+} 
+
+.about_us{
+    text-align: center;
+} 
+
+/* <!-- ///////// who are we ///// about us page2 //// --> */
+
+/* .about_who_are_wrapper{
+    display: flex;
+    padding: 50px;
+    justify-content: space-around;
+} */
+
+
+.about_who_are_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.about_who_are {
+    flex: 1;
+    min-width: 300px;
+    padding: 20px;
+}
+
+.about_who_we_are_img {
+    flex: 1;
+    min-width: 300px;
+    text-align: center;
+    padding: 20px;
+}
+
+.about_who_we_are_img img {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.about_who_are h1 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.about_who_are p {
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.about_who_are a {
+    display: inline-block;
+    margin: 20px 0;
+    color: red;
+    text-decoration: none;
+
+}
+
+.about_who_we_are_button {
+    margin-top: 20px;
+}
+
+.about_who_we_are_button button {
+    padding: 10px 30px;
+    border: none;
+    border-radius: 5px;
+    background-color: #6932EB;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.about_who_we_are_button button:hover {
+    background-color: #9747FF;
+}
+
+/* ////////// our_mission /////// */
+
+.our_mission{
+    padding-top: 70px;
+}
+.our_mission img{
+    width: 100%;
+}
+
+/* /////////our reach and map //// */
+.our_reach_div{
+    text-align: center;
+}
+.our_reach_div h1{
+    margin: 40px;
+}
+.our_reach_div p{
+    margin: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* //////// .footer_copyright ///// */
+ .container_footer{
+    margin: 0 auto;
+    background-color: #322744;
+    width: 100%;
+    height: 540px;
+   
+    
+}
+
+.row{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+     margin: 35px;
+
+
+}
+.logo{
+   margin: 30px;
+   padding-left: 60px;
+   cursor: pointer;
+}
+.col h2{
+     margin-bottom: 40px;
+     font-size: 18px;
+     font-weight: bold;
+     color: white;
+     cursor: pointer;
+}
+.col p{
+    margin: 25px 0;
+    color: #FFFFFF;
+    font-size: 13px;
+    cursor: pointer;
+}
+.col h4{
+    font-size: 12px;
+    color: #FFFFFF;
+    margin: 5px 0;
+}
+.social_icons{
+    margin-top: 30px;
+}
+
+.social_icons a{
+    margin-right:  10px;
+    transition: color 0.3s;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    transition: transform 0.5s;
+    display: inline-block;
+
+}
+.social_icons a:hover{
+    color: #9747FF;
+    transform: translateY(-5px);
+}
+.footer_img{
+    display: flex;
+    flex-direction: column;
+}
+.footer_img img{
+    margin: 10px 0;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.footer_img img:hover{
+    border: 1px solid white;
+}
+
+.footer_copyright{
+    padding: 20px;
+    text-align: center;
+    color: white;
+
+}
+.footer_copyright a{
+    color: white;
+    font-size: 12px;
+    text-decoration: none;
+    
+}
+.footer_copyright i{
+    padding: 20px;
+} 

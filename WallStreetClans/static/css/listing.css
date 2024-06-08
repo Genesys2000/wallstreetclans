@@ -1,0 +1,360 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+header {
+    background-color: #fff;
+    /* border-bottom: 2px solid #ddd; */
+    padding: 10px 20px;
+  
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav_bar,
+.nav_link {
+    display: flex;
+    align-items: center;
+
+
+}
+.nav_bar img {
+    max-height: 50px;
+    margin: 10px 20px;
+    
+   
+}
+
+
+.nav_bar a,
+.nav_link a {
+    text-decoration: none;
+    color: #333;
+    margin: 0 30px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.nav_bar a:hover,
+.nav_link a:hover {
+    color: #9747FF;
+}
+
+.nav_link a {
+    margin-left: 15px;
+
+}
+.nav_link_account{
+    background-color: #6932EB;
+    padding: 10px 18px;
+    border-radius: 5px;
+    color: #fff !important;
+}
+.nav_link_account:hover{
+    background-color: #9747FF;
+    color: black !important;
+}
+
+
+.line_wrapper{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+}
+.hr_line{
+    background-color: #32323333 ;
+    width: 100%;
+    height: 3px;
+}
+
+/* ////////////// the listing about styling /////// */
+
+
+.listing_about_container{
+    display: flex;
+    justify-content:space-around;
+    width: 100%;
+    align-items: center;
+    height: auto;
+}
+.listing_about_wrapper{
+    padding-top: 50px;
+}
+.Listingh1{
+    font-weight: bold;
+    padding-top: 15px;
+    padding-bottom: 20px;
+    font-size: 30px;
+}
+.listing_about_wrapper a {
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
+}
+.listing_about_wrapper i {
+     font-size: 16px;
+    font-weight: bold;
+}
+.grid{
+    padding: 15px 0;
+    align-items: center;
+    text-align: center;
+}
+
+.grid img{
+    margin: 3px;
+}
+
+.listing_btn_wrap{
+    display: flex;
+    justify-content:space-evenly;
+    padding: 20px 20px;
+}
+
+
+.listing_styled-button {
+    padding: 15px 30px;
+    font-size: 16px;
+    color: #fff;
+    background-color:  #6932EB;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.listing_styled-button:hover {
+    background-color:#9747FF;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.listing_styled-button:active {
+    background-color:#9747FF;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+.listing2_container{
+     flex-direction: column;
+      align-items: center;
+      height: auto;
+      align-items: center;
+      padding-top: 100px;
+}
+
+.listing2_wrapper{
+    padding-top:  50px;
+    align-items: center;
+}
+.listing2_para{
+    display: flex;
+     align-items:center;
+    justify-content:left;
+    line-height:47px;
+}
+
+.listingP{
+    margin-left: 50px;
+}
+.listingLast_img{
+    padding-top: 50px;
+}
+.description_img{
+    display: flex;
+    justify-content: center;
+    margin: 30px;
+}
+
+.description_img1{
+    display: flex;
+    justify-content: center;
+    margin: 30px;
+}
+
+/* ////////// footer input ////// */
+
+
+
+
+.footer_input_btn_wrapper{
+    width: 100%;
+    height: 128px;
+    display: block;
+    position: relative;
+  }
+  
+.footer_input_btn_wrapper::after {
+    content: "";
+    background: url('../images/anna_paquin_in_true_blood-1600x1200.jpg');
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;   
+  }
+
+
+.input_btn_wrapper{
+    color: white;
+    display: flex;
+    padding: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+.input_btn_wrapper i{
+    font-size: 25px;
+    color:  #9747FF;
+    cursor: pointer;
+}
+.i_p_wrapper p{
+    color: white;
+    font-size: 13px;
+    margin: 4px;
+    font-weight: bold;
+}
+.input_btn_footer input{
+    width: 190px;
+    padding: 19px;
+    background-color: white;
+    border-radius: 10px;
+
+}
+
+.input_btn_footer button{
+    width: 130px;
+    padding: 19px;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+   background-color : #9747FF;
+   outline: none;
+   border-radius: 10px;
+   transition: all 1s ease-out;
+
+}
+.input_btn_footer button:hover{
+    background-color: white;
+    color: #9747FF;
+    /* border: 1px solid #9747FF;qqq */
+}
+
+/* ///////// footer ///////////// */
+
+
+.container_footer{
+    margin: 0 auto;
+    background-color: rgba(45, 0, 45, 0.918);
+    width: 100%;
+    height: 540px;
+   
+    
+}
+
+.row{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+     margin: 35px;
+
+
+}
+.logo{
+   margin: 30px;
+   padding-left: 60px;
+   cursor: pointer;
+}
+.col h2{
+     margin-bottom: 40px;
+     font-size: 18px;
+     font-weight: bold;
+     color: white;
+     cursor: pointer;
+}
+.col p{
+    margin: 25px 0;
+    color: #FFFFFF;
+    font-size: 13px;
+    cursor: pointer;
+}
+.col h4{
+    font-size: 12px;
+    color: #FFFFFF;
+    margin: 5px 0;
+}
+.social_icons{
+    margin-top: 30px;
+}
+
+.social_icons a{
+    margin-right:  10px;
+    transition: color 0.3s;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    transition: transform 0.5s;
+    display: inline-block;
+
+}
+.social_icons a:hover{
+    color: #9747FF;
+    transform: translateY(-5px);
+}
+.footer_img{
+    display: flex;
+    flex-direction: column;
+}
+.footer_img img{
+    margin: 10px 0;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.footer_img img:hover{
+    border: 1px solid white;
+}
+
+.footer_copyright{
+    padding: 20px;
+    text-align: center;
+    color: white;
+
+}
+.footer_copyright a{
+    color: white;
+    font-size: 12px;
+    text-decoration: none;
+    
+}
+.footer_copyright i{
+    padding: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

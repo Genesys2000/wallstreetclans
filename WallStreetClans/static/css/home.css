@@ -1,0 +1,109 @@
+
+.new-search-box {
+    background-color: rgba(225,245,110,0.96);
+    border-radius: .125rem;
+    font-size: 1.125rem;
+    -ms-flex-order: 1;
+    order: 1;
+    padding-left: .5rem;
+    padding-right: .5rem;
+    padding-bottom: 1.5rem;
+    width: 100%;
+    position: relative;
+    z-index: 1
+}
+
+@media screen and (min-width: 36rem) {
+    .new-search-box {
+        padding:0 1rem 1.5rem
+    }
+}
+
+@media screen and (min-width: 48rem) {
+    .new-search-box {
+        box-shadow:0 .125rem .5rem rgba(102,102,100,0.24);
+        margin-left: 1.5rem;
+        padding-top: 1.5rem;
+        width: 23.625rem
+    }
+}
+
+@media screen and (min-width: 62rem) {
+    .new-search-box {
+        margin-left:calc((100vw - 59rem)/2)
+    }
+}
+
+@media screen and (min-width: 75rem) {
+    .new-search-box {
+        box-sizing:border-box;
+        margin: 0 auto;
+        padding-bottom: 2rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        width: calc(80rem - 9.5rem)
+    }
+
+    .new-search-box form {
+        -ms-flex-align: start;
+        align-items: flex-start;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-pack: center;
+        justify-content: center;
+        gap: 1rem;
+    }
+}
+
+@media screen and (min-width: 48rem) {
+    .new-search-box-title {
+        display:block;
+        font-size: 1.5rem;
+        font-weight: 700;
+        height: auto;
+        letter-spacing: -0.00625rem;
+        line-height: 1.875rem;
+        margin-bottom: 1rem;
+        padding-top: 0;
+        text-align: center;
+        width: auto
+    }
+}
+
+@media screen and (min-width: 62rem) {
+    .new-search-box-title {
+        font-size:1.75rem;
+        line-height: 2.25rem
+    }
+}
+
+@media screen and (min-width: 75rem) {
+    .new-search-box-title {
+        margin-bottom:1.5rem
+    }
+}
+
+
+.new-home-image {
+    -ms-flex-align: start;
+    align-items: flex-start;
+    display: -ms-flexbox;
+    display: flex;
+    height: auto;
+    padding-top: 9.375rem;
+    position: relative;
+    transition: opacity .15s linear;
+    width: auto
+}
+
+@media screen and (min-width: 48rem) {
+    .new-home-image {
+        -ms-flex-direction:column;
+        flex-direction: column;
+        height: 28.125rem;
+        -ms-flex-pack: center;
+        justify-content: center;
+        margin-bottom: 2rem;
+        padding-top: 0;
+    }
+}

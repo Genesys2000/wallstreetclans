@@ -9,7 +9,7 @@
     justify-content: center;
     padding: 100px;
     margin: auto;
-    align-items: center;     
+    align-items: center;
 }
 
 .signIn_content{
@@ -21,7 +21,7 @@
     align-items: left;
     text-align: center;
     padding-right: 50px;
-    
+
 }
 .para_content{
     text-align: left;
@@ -40,8 +40,8 @@
     color: #323233;
     font-weight: 500;
     font-size: 30px;
-   
-  
+
+
 }
 .p{
     padding: 2px 0;
@@ -67,15 +67,15 @@
     border-radius: 10px;
     cursor: pointer;
     transition: all 1s ease;
-    
+
 
 }
 .signIn_icons i{
     gap: 10px;
-  
+
 }
 .signIn_icons:hover{
-    background-color:  #6932EB; 
+    background-color:  #6932EB;
     color: white;
 
 }
@@ -89,13 +89,13 @@
     text-align: center;
     margin-left:160px ;
     gap: 15px;
-    
+
 }
 .span_line{
   width: 100px;
   height: 1px;
   background-color: black;
- 
+
 
 }
 .paragrah p{
@@ -118,7 +118,6 @@
     width: 100%;
 }
 .form_container{
-    margin-left: 100px;
     color: #323233;
 }
 
@@ -150,11 +149,11 @@ input[type=submit]{
 input{
     padding: 15px 0;
     border-radius: 10px;
-    
+
 }
 .div_input_wrapper{
     padding: 24px ;
-} 
+}
 .password{
     padding: 24px;
     position: relative;
@@ -193,7 +192,7 @@ input{
     display: flex;
     gap: 5px;
     align-items: center;
-    
+
 }
 
 .checkbox label {
@@ -201,7 +200,7 @@ input{
 }
 
 .checkbox_div span a {
-    color: #7853d0; 
+    color: #7853d0;
     text-decoration: none;
     font-weight: 500;
 }
@@ -218,7 +217,7 @@ input{
     text-align: center;
     font-size: 16px;
     font-weight: 200;
-    margin-bottom: 50px;  
+    margin-bottom: 50px;
 }
 
 .p_tag a{
@@ -228,7 +227,7 @@ input{
     text-align: center;
     font-size: 16px;
     font-weight: 200;
-    margin-bottom: 80px; 
+    margin-bottom: 80px;
     padding: 40px;
 }
 .sign_in_footer{
@@ -238,5 +237,5 @@ input{
     align-items: center;
     text-align: center;
     height: 120px;
-    
+
 }

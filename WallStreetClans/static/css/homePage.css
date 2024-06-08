@@ -14,7 +14,7 @@ header {
     border-bottom: 1px solid #e7e7e7;
     position: fixed;
     width: 97vw;
-    
+    z-index: 9999;
 }
 
 .nav_bar {
@@ -63,7 +63,7 @@ a.nav_btn{
 
 .nav_btn i {
     margin: 0 5px;
-   
+
 }
 
 /* /////// main ////////// */
@@ -74,8 +74,8 @@ a.nav_btn{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90vh; 
-    background-color: #f0f0f0; 
+    height: 90vh;
+    background-color: #f0f0f0;
 }
 
 .main_wrapper {
@@ -84,7 +84,7 @@ a.nav_btn{
 }
 
 .main_background {
-    background-color: aqua; 
+    background-color: aqua;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -127,7 +127,7 @@ a.nav_btn{
     position:absolute;
     bottom: 39;
     z-index: 10;
-    
+
 }
 .why_wallstreettclan_wrapper{
     margin: auto;
@@ -161,12 +161,12 @@ a.nav_btn{
 /* ////////// .wallstreettclan_images /////// */
 
 .wallstreettclan_images_wrapper {
-    background-color: #f0f0f0; 
+    background-color: #f0f0f0;
     padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 23px; 
+    gap: 23px;
 }
 
 .wallstreettclan_images {
@@ -208,7 +208,7 @@ a.nav_btn{
     width:90%;
     border-radius: 8px;
     margin: auto;
-   
+
 }
 .cons_image img:hover{
     border: 2px solid blue;
@@ -293,7 +293,7 @@ a.nav_btn{
     justify-content: space-evenly;
     padding: 10px 0;
     margin-bottom: 20px;
-   
+
 }
 
 .before-footer_div h3 {
@@ -301,7 +301,7 @@ a.nav_btn{
     margin-bottom: 15px;
     /* color: #000; */
     color: #323233;
-    
+
 }
 .before-footer_div{
     width: 22%;
@@ -311,13 +311,13 @@ a.nav_btn{
     color: #666;
     margin: 25px 0;
     font-weight: bold;
-    
+
 }
 .before-footer_div p:hover {
     color: #333;
     cursor: pointer;
 }
-   
+
 /* ///////// footer ////////// */
 
 .footer_input_btn_wrapper{
@@ -326,7 +326,7 @@ a.nav_btn{
     display: block;
     position: relative;
   }
-  
+
 .footer_input_btn_wrapper::after {
     content: "";
     background: url(./images/anna_paquin_in_true_blood-1600x1200.jpg);
@@ -336,7 +336,7 @@ a.nav_btn{
     bottom: 0;
     right: 0;
     position: absolute;
-    z-index: -1;   
+    z-index: -1;
   }
 
 
@@ -394,8 +394,8 @@ a.nav_btn{
     background-color: rgba(45, 0, 45, 0.918);
     width: 100%;
     height: 540px;
-   
-    
+
+
 }
 
 .row{
@@ -470,7 +470,7 @@ a.nav_btn{
     color: white;
     font-size: 12px;
     text-decoration: none;
-    
+
 }
 .footer_copyright i{
     padding: 20px;

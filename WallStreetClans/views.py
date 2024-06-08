@@ -1,9 +1,11 @@
 # views.py
+import json
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.core.mail import send_mail
 from django.utils.crypto import get_random_string
-from .models import OTP, BlogPost, Listing, Offer, Ad
+from .models import OTP, BlogPost, Listing, Offer, Ad, WallStreetUser, Payment
 from .forms import *
 from rest_framework import generics, permissions
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -18,8 +20,9 @@ from django.conf import settings
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib import messages
+from django.urls import reverse
 # from .forms import PaymentForm
-from .models import Listing #, Payment
 User = get_user_model()
 
 def home(request):
@@ -44,11 +47,10 @@ def register(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save(commit=False)
-            user.terms_accepted = 'terms_accepted' in request.POST
-            user.save()
-            send_otp(user)
-            return redirect('otp_verification')
+            user = form.save()
+            messages.success(request, "Your registration is successful proceed to login")
+            return redirect(reverse('login'))
+
     else:
         form = CustomUserCreationForm()
     return render(request, 'register.html', {'form': form})
@@ -78,17 +80,21 @@ def otp_verification(request):
     else:
         form = OTPForm()
     return render(request, 'registration/otp_verification.html', {'form': form})
-
 def user_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
-            email = form.cleaned_data['email']
-            password = form.cleaned_data['password']
-            user = User.objects.filter(email=email).first()
-            if user and user.check_password(password):
-                send_otp(user)
-                return redirect('otp_verification')
+            email = form.cleaned_data.get('email')
+            password = form.cleaned_data.get('password')
+            role = form.cleaned_data.get('role')
+            user = WallStreetUser.objects.filter(email=email).first()
+            if user and user.check_password(password) and user.role == role:
+                login(request, user)
+                return redirect('home')
+            else:
+                messages.error(request, "Invalid email or password. Please try again.")
+        else:
+            messages.error(request, "Invalid email or password. Please try again.")
     else:
         form = LoginForm()
     return render(request, 'login.html', {'form': form})
@@ -99,7 +105,7 @@ def user_logout(request):
 
 def listing_list(request):
     listings = Listing.objects.all()
-    return render(request, 'listing_list.html', {'listings': listings})
+    return render(request, 'listing.html', {'listings': listings})
 
 def listing_detail(request, pk):
     listing = get_object_or_404(Listing, pk=pk)
@@ -109,9 +115,14 @@ def make_offer(request, pk):
     listing = get_object_or_404(Listing, pk=pk)
     if request.method == 'POST':
         offer_price = request.POST.get('offer_price')
+        if offer_price is None:
+            # Handle the case where offer_price is missing
+            messages.error(request, "Offer price is required.")
+            return redirect('listing_detail', pk=pk)
         Offer.objects.create(listing=listing, buyer=request.user, offer_price=offer_price)
         return redirect('listing_detail', pk=pk)
     return render(request, 'make_offer.html', {'listing': listing})
+
 
 # def cart(request):
 #     cart, created = Cart.objects.get_or_create(user=request.user)
@@ -154,7 +165,6 @@ class UserSerializer(serializers.ModelSerializer):
 
 # View for User Registration
 class UserCreate(generics.CreateAPIView):
-    queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = (permissions.AllowAny,)
 
@@ -184,7 +194,7 @@ def logout_view(request):
         return Response(status=status.HTTP_205_RESET_CONTENT)
     except Exception as e:
         return Response(status=status.HTTP_400_BAD_REQUEST)
-    
+
 class AdViewSet(viewsets.ModelViewSet):
     queryset = Ad.objects.all()
     serializer_class = "AdSerializer"
@@ -193,15 +203,15 @@ class AdViewSet(viewsets.ModelViewSet):
     search_fields = ['title', 'description', 'address', 'amenities',]
     ordering_fields = ['price', 'posted_at']
 
-@login_required
-def initiate_payment(request):
+# @login_required
+def initiate_payment(request, pk):
+    listing = get_object_or_404(Listing, pk=pk)
     if request.method == 'POST':
         form = PaymentForm(request.POST)
         if form.is_valid():
             email = form.cleaned_data['email']
             amount = form.cleaned_data['amount']
-            property_id = form.cleaned_data['Listing_id']
-            property = Listing.objects.get(id='Listing _id')
+            listing_id = form.cleaned_data['listing_id']
 
             headers = {
                 "Authorization": f"Bearer {settings.PAYSTACK_SECRET_KEY}",
@@ -210,8 +220,9 @@ def initiate_payment(request):
             data = {
                 "email": email,
                 "amount": int(amount * 100),  # Paystack expects amount in kobo
+                'callback_url': request.build_absolute_uri('/payment_callback'),
                 "metadata": {
-                    "property_id": property_id,
+                    "listing_id": listing_id,
                     "user_id": request.user.id
                 }
             }
@@ -223,14 +234,14 @@ def initiate_payment(request):
             else:
                 form.add_error(None, "Error initializing payment. Please try again.")
     else:
-        form = PaymentForm(initial={'amount': 0, 'property_id': 0})
+        form = PaymentForm(initial={'email': request.user.email, 'amount': listing.price, 'listing_id': listing.pk})
 
-    return render(request, 'payment/initiate_payment.html', {'form': form, 'paystack_public_key': settings.PAYSTACK_PUBLIC_KEY})
+    return render(request, 'deposit.html', {'form': form, 'paystack_public_key': settings.PAYSTACK_PUBLIC_KEY})
 
 @csrf_exempt
 def payment_callback(request):
-    if request.method == 'POST':
-        payment_reference = request.POST.get('reference')
+    if request.method == 'GET':
+        payment_reference = request.GET.get('reference')
         headers = {
             "Authorization": f"Bearer {settings.PAYSTACK_SECRET_KEY}",
         }
@@ -238,13 +249,13 @@ def payment_callback(request):
         if response.status_code == 200:
             response_data = response.json()
             if response_data['data']['status'] == 'success':
-                property_id = response_data['data']['metadata']['property_id']
-                user_id = response_data['data']['metadata']['user_id']
                 amount = response_data['data']['amount'] / 100
+                listing_id = response_data['data']['metadata']['listing_id']
+                user_id = response_data['data']['metadata']['user_id']
 
                 Payment.objects.create(
                     user_id=user_id,
-                    property_id=property_id,
+                    listing_id=listing_id,
                     amount=amount,
                     reference=payment_reference,
                     status='success'
@@ -258,12 +269,12 @@ def payment_callback(request):
                     status='failed'
                 )
                 return redirect('payment_failed')
-    return redirect('home')
+    return redirect('listings')
 
 @login_required
 def payment_success(request):
-    return render(request, 'payment/payment_success.html')
+    return render(request, 'payment_success.html')
 
 @login_required
 def payment_failed(request):
-    return render(request, 'payment/payment_failed.html')
+    return render(request, 'payment_failed.html')

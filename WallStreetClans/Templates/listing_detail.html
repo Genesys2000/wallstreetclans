@@ -1,27 +1,88 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ property.title }}</title>
-</head>
-<body>
-    <h2>{{ property.title }}</h2>
-    <p>{{ property.description }}</p>
-    <p>Location: {{ property.location }}</p>
-    <p>Price: {{ property.price }}</p>
-    <h3>Offers</h3>
-    <ul>
-        {% for offer in property.offers.all %}
-            <li>Offer by {{ offer.buyer.username }}: {{ offer.offer_price }} ({{ offer.status }})</li>
-        {% endfor %}
-    </ul>
-    <h3>Make an Offer</h3>
-    <form method="post" action="{% url 'make_offer' property.pk %}">
-        {% csrf_token %}
-        <label for="offer_price">Offer Price:</label>
-        <input type="number" name="offer_price" id="offer_price" required>
-        <button type="submit">Submit Offer</button>
-    </form>
-</body>
-</html>
+{% extends 'layout.html' %}
+{% load static %}
+
+    {% block css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/listing.css' %}">
+    {% endblock %}
+    {% block title %} | Account {% endblock %}
+
+    {% block content %}
+
+<!-- /* ////////////// the listing about html /////// */ -->
+
+<div class="listing_about_container">
+    <div class="listing_about_content">
+        <div class="listing_about_wrapper">
+            <i class="bi bi-arrow-left"></i> <a href="{% url 'listings' %}">Back to product listings</a>
+            <h1 class="Listingh1">{{ listing.title }}</h1>
+            <div class="listing_div">
+                <div class="listing_img_wrapper">
+                    <img style="width: 100%;" src="{% static 'images/Frame 78 (1).png' %}" alt="">
+
+                    <div class="grid">
+                     <img src="{% static 'images/image 4.png' %}" alt="">
+                     <img src="{% static 'images/image 5.png' %}" alt="">
+                     <img src="{% static 'images/image 4.png' %}" alt="">
+                     <img src="{% static 'images/image 5.png' %}" alt="">
+                     <img src="{% static 'images/image 4.png' %}" alt="">
+                     <img src="{% static 'images/image 4.png' %}" alt="">
+                    </div>
+                <div class="listing_img_btn">
+                    <img src="{% static 'images/Group 1000002666.png' %}" alt="">
+                    <div class="listing_btn_wrap">
+                        <button class="listing_styled-button">View Picture</button>
+                        <a href="{% url 'make_payment' listing.pk %}" class="listing_styled-button">Make Deposit</a>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="listing2_container">
+        <div class="listing2_wrapper">
+            <div class="listing2_para">
+                <div class="listP">
+               <p>Price:</p>
+               <p>Property:</p>
+               <p>Location:</p>
+               <p>Year of construction:</p>
+               <p>Like and save:</p>
+            </div>
+               <div class="listingP">
+                <p>N{{ listing.price }}</p>
+                <p>Residential</p>
+                <p>{{ listing.location }}</p>
+                <p>2024</p>
+                <p><i class="bi bi-heart"></i></p>
+               </div>
+            </div>
+            
+            <div class="listingImg">
+                <div class="list_img_div">
+                <img src="{% static 'images/Frame 90.png' %}" alt="">
+                <img  style="margin: 0 40px;" src="{% static 'images/Frame 91.png' %}" alt="">
+              </div>
+            <div class="listingLast_img">
+                <img src="{% static 'images/Frame 89.png' %}" alt="">
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+</div>
+
+<div class="description_img">
+    <img style="width: 100%;" src="{% static 'images/Frame 96.png' %}" alt="">
+</div>
+
+<div class="description_img1">
+    <img style="width: 100%;" src="{% static 'images/Frame 97.png' %}" alt="">
+</div>
+{% endblock %}
