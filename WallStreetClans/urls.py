@@ -26,19 +26,16 @@ urlpatterns = [
     path('subscription/', subscription, name='subscription'),
     path('faq/', faq, name='faq'),
     path('', include(router.urls)),
-    path('register/', UserCreate.as_view(), name='register'),
-    path('login/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('logout/', logout_view, name='logout'),
     path('initiate_payment/', initiate_payment, name='initiate_payment'),
     path('payment_success/', payment_success, name='payment_success'),
     path('payment_failed/', payment_failed, name='payment_failed'),
     path('payment_callback/', payment_callback, name='payment_callback'),
-    path('payment_callback/', payment_callback, name='payment_callback'),
-    
+
 ]
 
 
 
-    
+
 

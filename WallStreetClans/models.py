@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.utils import timezone
 from PIL import Image
 
@@ -27,6 +27,7 @@ class WallStreetUserManager(BaseUserManager):
         extra_fields.setdefault('is_superuser', True)
         extra_fields.setdefault('terms_accepted', True)
         extra_fields.setdefault('role', 'group_manager')
+
         if extra_fields.get('is_staff') is not True:
             raise ValueError('Superuser must have is_staff=True.')
         if extra_fields.get('is_superuser') is not True:
@@ -38,13 +39,11 @@ class WallStreetUserManager(BaseUserManager):
 
         return self.create_user(username, email, password, **extra_fields)
 
-class WallStreetUser(AbstractBaseUser):
+class WallStreetUser(AbstractUser):
     email = models.CharField(max_length=255, unique=True)
     username = models.CharField(max_length=30, unique=True)
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='buyer')
     terms_accepted = models.BooleanField(default=False)
-    is_staff = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=True)
 
     objects = WallStreetUserManager()
 
@@ -104,11 +103,15 @@ class Ad(models.Model):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         if self.image:
-            img = Image.open(self.image.path)
+            img = Image.open(self.image)
             if img.height > 800 or img.width > 800:
                 output_size = (800, 800)
                 img.thumbnail(output_size)
-                img.save(self.image.path)
+                thumb_io = BytesIO()
+                img.save(thumb_io, format='JPEG', quality=90)
+                thumb_io.seek(0)
+                self.image = ContentFile(thumb_io.getvalue(), name=self.image.name)
+                self.save()
 
     def __str__(self):
         return self.title

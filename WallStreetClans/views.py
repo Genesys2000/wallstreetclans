@@ -48,7 +48,7 @@ def register(request):
             user = form.save()
             messages.success(request, "Your registration is successful proceed to login")
             return redirect(reverse('login'))
-        
+
     else:
         form = CustomUserCreationForm()
     return render(request, 'register.html', {'form': form})
@@ -94,9 +94,9 @@ def user_login(request):
                 messages.info(request, "Welcome Back {{ user.username }}")
                 return redirect('home')
             else:
-                messages.error(request, "invalid email or password")
+                messages.error(request, "Invalid email or password. Please try again.")
         else:
-            messages.error(request, "invalid email or password")
+            messages.error(request, "Invalid email or password. Please try again.")
     else:
         form = LoginForm()
     return render(request, 'login.html', {'form': form})
@@ -117,9 +117,14 @@ def make_offer(request, pk):
     listing = get_object_or_404(Listing, pk=pk)
     if request.method == 'POST':
         offer_price = request.POST.get('offer_price')
+        if offer_price is None:
+            # Handle the case where offer_price is missing
+            messages.error(request, "Offer price is required.")
+            return redirect('listing_detail', pk=pk)
         Offer.objects.create(listing=listing, buyer=request.user, offer_price=offer_price)
         return redirect('listing_detail', pk=pk)
     return render(request, 'make_offer.html', {'listing': listing})
+
 
 # def cart(request):
 #     cart, created = Cart.objects.get_or_create(user=request.user)
@@ -162,7 +167,6 @@ class UserSerializer(serializers.ModelSerializer):
 
 # View for User Registration
 class UserCreate(generics.CreateAPIView):
-    queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = (permissions.AllowAny,)
 
@@ -192,7 +196,7 @@ def logout_view(request):
         return Response(status=status.HTTP_205_RESET_CONTENT)
     except Exception as e:
         return Response(status=status.HTTP_400_BAD_REQUEST)
-    
+
 class AdViewSet(viewsets.ModelViewSet):
     queryset = Ad.objects.all()
     serializer_class = "AdSerializer"
@@ -208,8 +212,8 @@ def initiate_payment(request):
         if form.is_valid():
             email = form.cleaned_data['email']
             amount = form.cleaned_data['amount']
-            listing_id = form.cleaned_data['Listing_id']
-            listing = Listing.objects.get(id='Listing _id')
+            listing_id = form.cleaned_data['listing_id']
+            listing = Listing.objects.get(id='listing _id')
 
             headers = {
                 "Authorization": f"Bearer {settings.PAYSTACK_SECRET_KEY}",
@@ -246,13 +250,13 @@ def payment_callback(request):
         if response.status_code == 200:
             response_data = response.json()
             if response_data['data']['status'] == 'success':
-                property_id = response_data['data']['metadata']['property_id']
-                user_id = response_data['data']['metadata']['user_id']
                 amount = response_data['data']['amount'] / 100
+                listing_id = response_data['data']['metadata']['listing_id']
+                user_id = response_data['data']['metadata']['user_id']
 
                 Payment.objects.create(
                     user_id=user_id,
-                    property_id=property_id,
+                    listing_id=listing_id,
                     amount=amount,
                     reference=payment_reference,
                     status='success'

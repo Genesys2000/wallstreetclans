@@ -1,8 +1,8 @@
-# forms.py
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import OTP, WallStreetUser,  ROLE_CHOICES
+from .models import WallStreetUser, ROLE_CHOICES, OTP
 from django.contrib.auth import get_user_model
+
 User = get_user_model()
 
 class CustomUserCreationForm(UserCreationForm):
@@ -16,14 +16,14 @@ class CustomUserCreationForm(UserCreationForm):
 
     def save(self, commit=True):
         user = super().save(commit=False)
-        user.email =self.cleaned_data['email']
-        user.username =self.cleaned_data['username']
-        user.role =self.cleaned_data['role ']
-        user.terms_accepted =self.cleaned_data['terms_accepted']
+        user.email = self.cleaned_data['email']
+        user.username = self.cleaned_data['username']
+        user.role = self.cleaned_data['role']  # Remove the extra space after 'role'
+        user.terms_accepted = self.cleaned_data['terms_accepted']
         if commit:
             user.save()
         return user
-        
+
     def clean_terms_accepted(self):
         terms_accepted = self.cleaned_data.get('terms_accepted')
         if not terms_accepted:
@@ -31,29 +31,15 @@ class CustomUserCreationForm(UserCreationForm):
         return terms_accepted
 
 class LoginForm(forms.Form):
-    email = forms.EmailField()
-    password = forms.CharField(widget=forms.PasswordInput)
-    role = forms.ChoiceField(choices=ROLE_CHOICES)
-    # fingerprint_auth = forms.BooleanField(required=False, label="Use fingerprint authentication")
-
-    def clean(self):
-        cleaned_data = super().clean()
-        email = cleaned_data.get('email')
-        role = cleaned_data.get('role')
-        
-        if not email:
-            raise forms.ValidationError('Email is required.')
-        
-        if not role:
-            raise forms.ValidationError('Role is required.')
-
-        return cleaned_data
+    email = forms.EmailField(required=True)
+    password = forms.CharField(widget=forms.PasswordInput, required=True)
+    role = forms.ChoiceField(choices=ROLE_CHOICES, required=True)
 
 class OTPForm(forms.Form):
     email = forms.EmailField(label='Email', required=True)
     otp = forms.CharField(label='OTP', max_length=6, required=True)
 
 class PaymentForm(forms.Form):
-    email = forms.EmailField()
-    amount = forms.DecimalField(max_digits=10, decimal_places=2)
-    property_id = forms.IntegerField(widget=forms.HiddenInput())
+    email = forms.EmailField(required=True)
+    amount = forms.DecimalField(max_digits=10, decimal_places=2, required=True)
+    property_id = forms.IntegerField(widget=forms.HiddenInput(), required=True)  # Ensure proper field requirement
